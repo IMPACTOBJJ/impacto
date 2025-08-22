@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BJJ OKINAWA 入会フォーム</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      font-size: 28px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 16px;
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      width: 100%;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+    .scroll-box {
+      height: 250px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 18px;
+      margin-top: 20px;
+      background: #f9f9f9;
+      border-radius: 6px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 10px;
+      touch-action: none;
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+    }
+    .signature-controls {
+      margin-top: 10px;
+    }
+    .qr-section-title {
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #444;
+    }
+    .qr-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .qr-box {
+      width: 260px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+    }
+    .qr-box h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .qr-box a {
+      display: inline-block;
+      font-size: 18px;
+      line-height: 48px;
+      height: 48px;
+      min-width: 212px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 6px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BJJ IMPACTO OKINAWA</h1>
+    <form action="https://formsubmit.co/impacto@bjjokinawa.com" method="POST" enctype="multipart/form-data" onsubmit="saveSignature()">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <label>お名前 / Full Name</label>
+      <input type="text" name="お名前" required>
+
+      <label>生年月日 / Date of Birth</label>
+      <input type="date" name="生年月日" required>
+
+      <label>メールアドレス / Email</label>
+      <input type="email" name="メールアドレス" required>
+
+      <label>電話番号 / Phone Number</label>
+      <input type="tel" name="電話番号" required>
+
+      <label>顔写真のアップロード / Upload a recent face photo</label>
+      <input type="file" name="顔写真" accept="image/*" required>
+
+      <label>柔術経験はありますか？ / Do you have BJJ experience?</label>
+      <select name="柔術経験" required>
+        <option value="なし">なし / No</option>
+        <option value="あり">あり / Yes</option>
+      </select>
+
+      <label>経験がある方は帯の色 / Your belt color if experienced</label>
+      <select name="帯の色">
+        <option value="">選択してください</option>
+        <option value="白帯">白帯</option>
+        <option value="青帯">青帯</option>
+        <option value="紫帯">紫帯</option>
+        <option value="茶帯">茶帯</option>
+        <option value="黒帯">黒帯</option>
+      </select>
+
+      <label>持病や既往歴 / Medical conditions</label>
+      <textarea name="持病・既往歴" rows="3"></textarea>
+
+      <label>緊急連絡先（氏名・電話番号） / Emergency Contact</label>
+      <input type="text" name="緊急連絡先" required>
+
+      <label>契約日 / Date of Agreement</label>
+      <input type="date" name="契約日" required>
+
+      <label>規約内容 / Terms</label>
+      <div class="scroll-box">
+        <p><strong>【敬意と衛生｜Respect & Hygiene】</strong><br>
+        • 清潔・健康を保ち、仲間に敬意を持って練習に臨んでください。<br>
+        • 爪は短く、長髪は結んでください。<br>
+        • 道着の下にラッシュガードを着用してください。<br><br>
+        • Maintain hygiene and respect. Trim nails. Tie long hair. Wear rash guard under gi.</p>
+
+        <p><strong>【お支払い｜Payments】</strong><br>
+        • 入会時に自動引き落とし手続きを完了してください。<br>
+        • 月謝は2ヶ月目以降自動引き落としされます。<br><br>
+        • Complete the auto-payment setup at the time of enrollment.<br>
+        • From the second month onward, the monthly fee will be auto-deducted.</p>
+
+        <p><strong>【返金｜Refunds】</strong><br>
+        • ご入金後の返金は、いかなる理由でもお受けできません。<br><br>
+        • No refunds will be issued under any circumstances.</p>
+
+        <p><strong>【免責｜Waiver】</strong><br>
+        • 練習中の事故・怪我・病気に対し、当クラブは責任を負いません。<br><br>
+        • The Club is not responsible for any accidents, injuries, or illnesses during training.</p>
+
+        <p><strong>【休会・退会｜Leave/Withdrawal】</strong><br>
+        • 所定の手続きを提出してください。<br>
+        • クラブが受領して2日後に適用されます。<br><br>
+        • Submit the designated form for leave or withdrawal.<br>
+        • The change will take effect two days after the club receives the form.</p>
+      </div>
+
+      <label>
+        <input type="checkbox" name="利用規約同意" required>
+        上記の規約に同意します / I agree to the terms and conditions
+      </label>
+
+      <label>手書き署名 / Handwritten Signature</label><br>
+      <canvas id="signatureCanvas"></canvas>
+      <div class="signature-controls">
+        <button type="button" onclick="clearCanvas()">署名をクリア</button>
+      </div>
+      <input type="hidden" name="署名画像データ" id="signatureData">
+
+      
+
+  <script>
+    const canvas = document.getElementById("signatureCanvas");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+
+    function getCanvasPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX || (e.touches && e.touches[0].clientX);
+      const y = e.clientY || (e.touches && e.touches[0].clientY);
+      return {
+        x: x - rect.left,
+        y: y - rect.top
+      };
+    }
+
+    function startDrawing(e) {
+      drawing = true;
+      const pos = getCanvasPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+    }
+
+    function draw(e) {
+      if (!drawing) return;
+      const pos = getCanvasPos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+
+    function stopDrawing() {
+      drawing = false;
+    }
+
+    canvas.addEventListener("mousedown", startDrawing);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseup", stopDrawing);
+    canvas.addEventListener("mouseleave", stopDrawing);
+    canvas.addEventListener("touchstart", e => {
+      e.preventDefault(); startDrawing(e);
+    });
+    canvas.addEventListener("touchmove", e => {
+      e.preventDefault(); draw(e);
+    });
+    canvas.addEventListener("touchend", stopDrawing);
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function saveSignature() {
+      const dataURL = canvas.toDataURL("image/png");
+      document.getElementById("signatureData").value = dataURL;
+    }
+  </script>
+</body>
+</html>
